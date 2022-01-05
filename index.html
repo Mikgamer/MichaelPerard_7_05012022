@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Bootstrap4/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/icons/logoIcon.svg" alt="Les petits plats">
+            <h1>Les petits plats</h1>
+        </div>
+    </header>
+    <main>
+
+        <div class="search input-group">
+            <input type="text" class="form-control" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+            <div class="input-group-append">
+                <button class="btn" type="button">
+                    <img src="assets/icons/search.svg" alt="">
+                </button>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filtersSelected">
+                <span class="filter ingredient">
+                    Coco
+                    <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
+                </span>
+                <span class="filter device">
+                    Appareil
+                    <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
+                </span>
+                <span class="filter utensil">
+                    Ustensile
+                    <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
+                </span>
+            </div>
+
+            <div class="filtersDropdowns">
+                <div class="dropdown input-group ingredient">
+                    <input type="text" class="form-control" placeholder="Ingredients">
+                    <div class="input-group-append">
+                        <button class="btn" type="button">
+                            <img src="assets/icons/arrow.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dropdown input-group device">
+                    <input type="text" class="form-control" placeholder="Appareil">
+                    <div class="input-group-append">
+                        <button class="btn" type="button">
+                            <img src="assets/icons/arrow.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dropdown input-group utensil">
+                    <input type="text" class="form-control" placeholder="Ustensiles">
+                    <div class="input-group-append">
+                        <button class="btn" type="button">
+                            <img src="assets/icons/arrow.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+
+        </style>
+
+        <section class="grid">
+            <article class="card">
+                <img class="card-img-top" src="" alt="Card image cap">
+                <div class="card-body">
+                    <div class="recipeHeader">
+                        <h2 class="recipeTitle">Card title</h2>
+                        <span class="recipeTime">
+                            <img src="assets/icons/time.svg" alt="">
+                            <span class="recipeMinutes">10 min</span>
+                        </span>
+                    </div>
+                    <ul class="recipeIngredients">
+                        <li>
+                            <span class="recipeIngredientName">Lait de coco:</span>
+                            <span class="recipeIngredientValue">400ml</span>
+                        </li>
+                        <li>
+                            <span class="recipeIngredientName">Jus de citron:</span>
+                            <span class="recipeIngredientValue">2</span>
+                        </li>
+                        <li>
+                            <span class="recipeIngredientName">Créme de coco:</span>
+                            <span class="recipeIngredientValue">4 cuillères</span>
+                        </li>
+                        <li>
+                            <span class="recipeIngredientName">Sucre:</span>
+                            <span class="recipeIngredientValue">20g</span>
+                        </li>
+                        <li>
+                            <span class="recipeIngredientName">Glaçons:</span>
+                            <span class="recipeIngredientValue">2</span>
+                        </li>
+                    </ul>
+                    <p class="recipePreparation">
+                        Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée
+                    </p>
+                  </div>
+            </article>
+        </section>
+
+    </main>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

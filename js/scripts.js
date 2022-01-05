@@ -1,0 +1,1 @@
+document.querySelector("body").ondragstart = () => {return false};

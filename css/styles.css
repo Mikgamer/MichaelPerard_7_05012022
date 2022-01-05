@@ -1,0 +1,246 @@
+@font-face {
+    font-family: "DM Sans";
+    src: url("/assets/fonts/DM_Sans/DMSans-Bold.ttf");
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato-Regular.ttf");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato-Bold.ttf");
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/assets/fonts/Roboto/Roboto-Regular.ttf");
+    font-style: normal;
+    font-weight: 400;
+}
+
+.form-control:focus {
+    background: unset;
+    color: unset;
+}
+
+body {
+    margin: 0;
+    font-family: "Lato";
+    font-weight: normal;
+    font-style: normal;
+}
+
+header {
+    margin: 42px 0 17px;
+}
+
+main {
+    margin: 0 100px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .logo img {
+        width: 50px;
+    }
+
+    .logo h1 {
+        margin: 0;
+        font-family: "DM Sans";
+        font-weight: bold;
+        font-style: normal;
+        font-size: 36px;
+        line-height: 47px;
+        color: #D04F4F;
+    }
+
+.search {
+    background: #E7E7E7;
+    border-radius: 5px;
+}
+
+    .search input, .search button {
+        background: none;
+        border: none;
+    }
+
+    .search input {
+        padding: 23px 22px 24px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+        .search input::placeholder {
+            font-family: "Lato";
+            opacity: 0.25;
+        }
+
+    .search button {
+        padding: 0 20px;
+    }
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 121px;
+    margin: 25px 0;
+}
+
+.ingredient, .device, .utensil{
+    border-radius: 5px;
+}
+
+.ingredient {
+    background: #3282F7;
+}
+
+.device {
+    background: #68D9A4;
+}
+
+.utensil {
+    background: #ED6454;
+}
+
+    .filtersSelected {
+        display: flex;
+        gap: 15px;
+        margin: 0 0 20px;
+    }
+    
+        .filter {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            height: 37px;
+            padding: 0 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+    .filtersDropdowns {
+        display: flex;
+        gap: 20px;
+    }
+
+        .dropdown {
+            min-width: 170px;
+            width: 170px;
+            height: 69px;
+            margin: -5px 0 0;
+        }
+
+        .dropdown input, .dropdown button {
+            background: none;
+            border: none;
+        }
+
+        .dropdown input {
+            color: white;
+            font-family: "Lato";
+            font-weight: bold;
+        }
+
+        .dropdown input:focus {
+            color: white;
+        }
+
+        .dropdown input::placeholder {
+            color: white;
+            font-family: "Lato";
+            font-weight: bold;
+        }
+
+        .dropdown input:focus::placeholder {
+            color: transparent;
+        }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 50px;
+}
+
+    .grid .card-img-top {
+        height: 178px;
+        object-fit: cover;
+        background: #C7BEBE;
+    }
+
+    .grid .card {
+        border: none;
+        background: #E7E7E7;
+    }
+
+    .grid .card-body {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        padding: 20px;
+    }
+
+    .recipeHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 0 20px;
+    }
+
+        .recipeHeader h2 {
+            margin: 0;
+        }
+
+        .recipeTime {
+            display: flex;
+            gap: 7px;
+        }
+
+            .recipeMinutes {
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 22px;
+            }
+
+    .recipeTitle{
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: normal;
+    }
+
+    .recipeIngredients, .recipePreparation {
+        margin: 0;
+        width: 50%;
+        font-size: 12px;
+        height: 105px;
+    }
+
+    .recipeIngredients {
+        line-height: 14px;
+        list-style: none;
+        padding: 0;
+    }
+
+        .recipeIngredientName {
+            font-weight: bold;
+        }
+    
+    .recipePreparation {
+        line-height: 12px;
+        font-family: "Roboto";
+        font-style: normal;
+    }
