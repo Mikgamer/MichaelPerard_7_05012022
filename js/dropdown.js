@@ -107,6 +107,8 @@ async function getDropdownsLists() {
     const appliance = document.querySelector(".dropdown.appliance .dropdownOptions");
     const utensil = document.querySelector(".dropdown.utensil .dropdownOptions");
 
+    ingredients.innerHTML = appliance.innerHTML = utensil.innerHTML = "";
+
     ingredients.appendChild(generateDropdownList(listOfIngredientsFiltered));
     appliance.appendChild(generateDropdownList(listOfAppliancesFiltered));
     utensil.appendChild(generateDropdownList(listOfUtensilsFiltered));

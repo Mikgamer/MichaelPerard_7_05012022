@@ -29,7 +29,7 @@
 .form-control:focus, .btn:focus {
     background: unset;
     color: unset;
-    box-shadow: 0 0 0 2px #212529;
+    box-shadow: 0 0 0 2px rgb(0 0 0/.1);
 }
 
 body {
@@ -314,7 +314,7 @@ main {
         line-height: 14px;
         list-style: none;
         padding: 0;
-        height: 105px;
+        min-height: 105px;
     }
 
         .recipeIngredientName {

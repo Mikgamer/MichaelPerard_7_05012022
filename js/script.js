@@ -76,9 +76,16 @@ function createCard(recipe) {
 async function init() {
     await structureData(recipes);
     getDropdownsLists();
+    
+    for (let i = 0; i < 30; i++) {
+        document.querySelector("section").appendChild(createCard(recipes[i]));
+        
+    }
 }
 
 init();
+
+console.log(recipes);
 
 let recipeFilter = [];
 let dropdownFilterList = new Set();
