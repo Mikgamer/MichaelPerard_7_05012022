@@ -36,12 +36,10 @@ function dropdownClose() {
 }
 
 function generateDropdownList(list) {
-    console.log("----------------------------------------------------------");
     const listItems = list.length / 3;
     const generatedList = document.createDocumentFragment();
 
     for (let i = 1; i < 4; i++) {
-        console.log("I = "+i+"------");
         var ul = document.createElement("ul")
         // Formule pour savoir combien mettre d'objets à la ul
         var currentListItems = i===1 ? Math.ceil(listItems) :
@@ -49,9 +47,9 @@ function generateDropdownList(list) {
         Math.floor(listItems); 
 
         for (let j = (i - 1) * currentListItems; j < i * currentListItems - 1; j++) {
-            console.log("J = "+j);
             var li = document.createElement("li");
-                  li.textContent = list[j];
+                li.setAttribute("onclick", "addDropdownFilter(event)")
+                li.textContent = list[j];
             ul.appendChild(li);
         }
         
@@ -61,13 +59,55 @@ function generateDropdownList(list) {
     return generatedList;
 }
 
+function createDropdownFilterCard(text, type) {
+    const filter = document.createElement("span");
+          filter.classList.add("filter", type);
+          filter.textContent = text;
+        const img = document.createElement("img");
+              img.src = "assets/icons/delete.svg"
+              img.alt = "";
+              img.setAttribute("onclick", "removeDropdownFilter(event)")
+        filter.appendChild(img);
+    return filter;
+}
+
+function addDropdownFilter(event) {
+    const target = event.currentTarget;
+    const text = target.textContent;
+    const type = target.parentNode.parentNode.parentNode.dataset.type;
+    const selectedFilters = document.querySelector(".filtersSelected");
+    
+    if (!dropdownFilterList.has(text)) {
+        dropdownFilterList.add(text);
+        selectedFilters.appendChild(createDropdownFilterCard(text, type));
+    }
+
+    if (dropdownFilterList.size>0) {
+        selectedFilters.style.display = "flex";
+    } else { selectedFilters.style.display = ""; }
+}
+
+function removeDropdownFilter(event) {
+    const target = event.currentTarget;
+    const text = target.parentNode.textContent;
+    const selectedFilters = document.querySelector(".filtersSelected");
+
+    if (dropdownFilterList.has(text)) {
+        dropdownFilterList.delete(text);
+        target.parentNode.outerHTML = "";
+    }
+
+    if (dropdownFilterList.size>0) {
+        selectedFilters.style.display = "flex";
+    } else { selectedFilters.style.display = ""; }
+}
+
 async function getDropdownsLists() {
-    const ingredients = document.querySelector(".dropdown.ingredient");
-    const appliance = document.querySelector(".dropdown.appliance");
-    const utensil = document.querySelector(".dropdown.utensil");
+    const ingredients = document.querySelector(".dropdown.ingredient .dropdownOptions");
+    const appliance = document.querySelector(".dropdown.appliance .dropdownOptions");
+    const utensil = document.querySelector(".dropdown.utensil .dropdownOptions");
 
-    ingredients.querySelector(".dropdownOptions").appendChild(generateDropdownList(listOfIngredients));
-    appliance.querySelector(".dropdownOptions").appendChild(generateDropdownList(listOfAppliances));
-    utensil.querySelector(".dropdownOptions").appendChild(generateDropdownList(listOfUtensils));
-
+    ingredients.appendChild(generateDropdownList(listOfIngredientsFiltered));
+    appliance.appendChild(generateDropdownList(listOfAppliancesFiltered));
+    utensil.appendChild(generateDropdownList(listOfUtensilsFiltered));
 }

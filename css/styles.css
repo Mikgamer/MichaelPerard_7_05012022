@@ -26,9 +26,10 @@
     font-weight: 400;
 }
 
-.form-control:focus {
+.form-control:focus, .btn:focus {
     background: unset;
     color: unset;
+    box-shadow: 0 0 0 2px #212529;
 }
 
 body {
@@ -95,7 +96,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 121px;
+    min-height: 121px;
     margin: 25px 0;
 }
 
@@ -116,7 +117,8 @@ main {
 }
 
     .filtersSelected {
-        display: flex;
+        display: none;
+        flex-wrap: wrap;
         gap: 15px;
         margin: 0 0 20px;
     }
@@ -129,6 +131,16 @@ main {
             padding: 0 20px;
             color: white;
             font-weight: bold;
+        }
+
+        .filter img {
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .filter img:hover {
+            filter: brightness(0.5) sepia(1) saturate(10000%);
+            transform: scale(1.2);
         }
 
     .filtersDropdowns {
@@ -192,6 +204,10 @@ main {
                 width: 240px;
                 white-space: nowrap;
             }
+
+            .dropdownOptions ul:not(:last-of-type) {
+                padding: 0 20px 0 0;
+            }
         
             .dropdownOptions ul:last-child{
                 width: auto;
@@ -201,6 +217,25 @@ main {
                     padding: 0 0 10px;
                     text-overflow: ellipsis;
                     overflow: hidden;
+                    cursor: pointer;
+                }
+
+                .dropdownOptions ul:last-of-type li {
+                    padding: 0 4px 10px 0;
+                }
+
+                .dropdownOptions li::first-letter {
+                    text-transform: capitalize;
+                }
+    
+                .dropdownOptions li:hover {
+                    box-shadow: -4px -4px 0px 4px rgb(0 0 0/.1);
+                    background: rgb(0 0 0/.1);
+                    background-attachment: local;
+                }
+
+                .dropdownOptions ul:last-of-type li:hover {
+                    box-shadow: -4px -4px 0px 4px rgb(0 0 0/.1);
                 }
             
         .dropdownOpen {

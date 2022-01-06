@@ -80,7 +80,9 @@ async function init() {
 
 init();
 
-console.log(recipes);
-console.log(listOfIngredients);
-console.log(listOfUtensils);
-console.log(listOfAppliances);
+let recipeFilter = [];
+let dropdownFilterList = new Set();
+
+let listOfIngredientsFiltered = listOfIngredients;
+let listOfUtensilsFiltered = listOfUtensils;
+let listOfAppliancesFiltered = listOfAppliances;

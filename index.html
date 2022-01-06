@@ -27,23 +27,10 @@
         </div>
 
         <div class="filters">
-            <div class="filtersSelected">
-                <span class="filter ingredient">
-                    Coco
-                    <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
-                </span>
-                <span class="filter appliance">
-                    Appareil
-                    <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
-                </span>
-                <span class="filter utensil">
-                    Ustensile
-                    <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
-                </span>
-            </div>
+            <div class="filtersSelected"></div>
 
             <div class="filtersDropdowns">
-                <div class="dropdown input-group ingredient" onmousedown="dropdownOpen(event.currentTarget)">
+                <div class="dropdown input-group ingredient" onmousedown="dropdownOpen(event.currentTarget)" data-type="ingredient">
                     <input type="text" class="form-control" placeholder="Ingredients">
                     <div class="input-group-append">
                         <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
@@ -53,7 +40,7 @@
                     <div class="dropdownOptions ingredient"></div>
                 </div>
 
-                <div class="dropdown input-group appliance" onmousedown="dropdownOpen(event.currentTarget)">
+                <div class="dropdown input-group appliance" onmousedown="dropdownOpen(event.currentTarget)" data-type="appliance">
                     <input type="text" class="form-control" placeholder="Appareil">
                     <div class="input-group-append">
                         <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
@@ -63,7 +50,7 @@
                     <div class="dropdownOptions appliance"></div>
                 </div>
 
-                <div class="dropdown input-group utensil" onmousedown="dropdownOpen(event.currentTarget)">
+                <div class="dropdown input-group utensil" onmousedown="dropdownOpen(event.currentTarget)" data-type="utensil">
                     <input type="text" class="form-control" placeholder="Ustensiles">
                     <div class="input-group-append">
                         <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
