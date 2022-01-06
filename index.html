@@ -32,7 +32,7 @@
                     Coco
                     <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
                 </span>
-                <span class="filter device">
+                <span class="filter appliance">
                     Appareil
                     <img src="assets/icons/delete.svg" alt="Delete the filter" role="button">
                 </span>
@@ -43,38 +43,37 @@
             </div>
 
             <div class="filtersDropdowns">
-                <div class="dropdown input-group ingredient">
+                <div class="dropdown input-group ingredient" onmousedown="dropdownOpen(event.currentTarget)">
                     <input type="text" class="form-control" placeholder="Ingredients">
                     <div class="input-group-append">
-                        <button class="btn" type="button">
+                        <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
                         </button>
                     </div>
+                    <div class="dropdownOptions ingredient"></div>
                 </div>
 
-                <div class="dropdown input-group device">
+                <div class="dropdown input-group appliance" onmousedown="dropdownOpen(event.currentTarget)">
                     <input type="text" class="form-control" placeholder="Appareil">
                     <div class="input-group-append">
-                        <button class="btn" type="button">
+                        <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
                         </button>
                     </div>
+                    <div class="dropdownOptions appliance"></div>
                 </div>
 
-                <div class="dropdown input-group utensil">
+                <div class="dropdown input-group utensil" onmousedown="dropdownOpen(event.currentTarget)">
                     <input type="text" class="form-control" placeholder="Ustensiles">
                     <div class="input-group-append">
-                        <button class="btn" type="button">
+                        <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
                         </button>
                     </div>
+                    <div class="dropdownOptions utensil"></div>
                 </div>
             </div>
         </div>
-
-        <style>
-
-        </style>
 
         <section class="grid">
             <article class="card">
@@ -117,6 +116,8 @@
         </section>
 
     </main>
-    <script src="js/scripts.js"></script>
+    <script src="data/recipes.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

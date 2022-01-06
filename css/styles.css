@@ -99,7 +99,7 @@ main {
     margin: 25px 0;
 }
 
-.ingredient, .device, .utensil{
+.ingredient, .appliance, .utensil{
     border-radius: 5px;
 }
 
@@ -107,7 +107,7 @@ main {
     background: #3282F7;
 }
 
-.device {
+.appliance {
     background: #68D9A4;
 }
 
@@ -166,6 +166,53 @@ main {
 
         .dropdown input:focus::placeholder {
             color: transparent;
+        }
+        
+        .dropdown button img{
+            transform: rotate(180deg);
+        }
+
+        .dropdownOptions{
+            position: absolute;
+            display: none;
+            top: calc(100% - 1px);
+            left: 0;
+            padding: 0 20px 5px;
+            z-index: 1;
+            color: white;
+            font-size: 18px;
+            line-height: 22px;
+            border-radius: 0 0 5px 5px;
+        }
+    
+            .dropdownOptions ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                width: 240px;
+                white-space: nowrap;
+            }
+        
+            .dropdownOptions ul:last-child{
+                width: auto;
+            }
+    
+                .dropdownOptions li {
+                    padding: 0 0 10px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            
+        .dropdownOpen {
+            border-radius: 5px 5px 0 0;
+        }
+    
+        .dropdownOpen .dropdownOptions{
+            display: flex;
+        }
+
+        .dropdownOpen button img{
+            transform: none;
         }
 
 .grid {
@@ -226,13 +273,13 @@ main {
         margin: 0;
         width: 50%;
         font-size: 12px;
-        height: 105px;
     }
 
     .recipeIngredients {
         line-height: 14px;
         list-style: none;
         padding: 0;
+        height: 105px;
     }
 
         .recipeIngredientName {
@@ -243,4 +290,10 @@ main {
         line-height: 12px;
         font-family: "Roboto";
         font-style: normal;
+        height: 109px;
+        overflow: hidden;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 9;
+        -webkit-box-orient: vertical;
     }
