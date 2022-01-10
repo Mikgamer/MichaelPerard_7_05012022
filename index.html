@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
     <main>
 
         <div class="search input-group">
-            <input type="text" class="form-control" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+            <input type="text" class="form-control" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette" oninput="handleInput(event)">
             <div class="input-group-append">
                 <button class="btn" type="button">
                     <img src="assets/icons/search.svg" alt="">
@@ -66,6 +66,8 @@
 
     </main>
     <script src="data/recipes.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/input.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="js/script.js"></script>
 </body>

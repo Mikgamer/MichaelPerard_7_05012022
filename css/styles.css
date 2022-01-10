@@ -1,27 +1,27 @@
 @font-face {
     font-family: "DM Sans";
-    src: url("/assets/fonts/DM_Sans/DMSans-Bold.ttf");
+    src: url("../assets/fonts/DM_Sans/DMSans-Bold.ttf");
     font-style: normal;
     font-weight: 700;
 }
 
 @font-face {
     font-family: "Lato";
-    src: url("/assets/fonts/Lato/Lato-Regular.ttf");
+    src: url("../assets/fonts/Lato/Lato-Regular.ttf");
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
     font-family: "Lato";
-    src: url("/assets/fonts/Lato/Lato-Bold.ttf");
+    src: url("../assets/fonts/Lato/Lato-Bold.ttf");
     font-style: normal;
     font-weight: 700;
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("/assets/fonts/Roboto/Roboto-Regular.ttf");
+    src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
     font-style: normal;
     font-weight: 400;
 }
@@ -29,7 +29,7 @@
 .form-control:focus, .btn:focus {
     background: unset;
     color: unset;
-    box-shadow: 0 0 0 2px rgb(0 0 0/.1);
+    box-shadow: unset;
 }
 
 body {
@@ -127,7 +127,7 @@ main {
             display: flex;
             align-items: center;
             gap: 13px;
-            height: 37px;
+            min-height: 37px;
             padding: 0 20px;
             color: white;
             font-weight: bold;
@@ -145,6 +145,7 @@ main {
 
     .filtersDropdowns {
         display: flex;
+        flex-wrap: wrap;
         gap: 20px;
     }
 
@@ -190,7 +191,7 @@ main {
             top: calc(100% - 1px);
             left: 0;
             padding: 0 20px 5px;
-            z-index: 1;
+            z-index: 3;
             color: white;
             font-size: 18px;
             line-height: 22px;
@@ -201,16 +202,13 @@ main {
                 list-style: none;
                 padding: 0;
                 margin: 0;
-                width: 240px;
+                width: auto;
                 white-space: nowrap;
             }
 
             .dropdownOptions ul:not(:last-of-type) {
                 padding: 0 20px 0 0;
-            }
-        
-            .dropdownOptions ul:last-child{
-                width: auto;
+                width: 240px;
             }
     
                 .dropdownOptions li {
@@ -264,6 +262,7 @@ main {
     }
 
     .grid .card {
+        overflow: hidden;
         border: none;
         background: #E7E7E7;
     }
@@ -332,3 +331,45 @@ main {
         -webkit-line-clamp: 9;
         -webkit-box-orient: vertical;
     }
+
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    main {
+        margin: 0 50px;
+    }
+
+    .dropdownOptions ul, .dropdownOptions ul:not(:last-of-type) {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        max-width: 440px;
+        margin: 0 auto;
+        grid-template-columns: 1fr;
+    }
+
+    .dropdownOpen .dropdownOptions {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin: 0 20px;
+    }
+    
+    .dropdown{
+        min-width: 150px;
+        width: 150px;
+        
+    }
+
+}

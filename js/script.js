@@ -1,6 +1,6 @@
-let listOfIngredients = [];
-let listOfUtensils = [];
-let listOfAppliances = [];
+let listOfIngredients = new Set();
+let listOfUtensils = new Set();
+let listOfAppliances = new Set();
 
 function structureData(recipes) {
     let setOfIngredients = new Set();
@@ -25,11 +25,17 @@ function structureData(recipes) {
 function createCard(recipe) {
     const card = document.createElement("article");
           card.classList.add("card");
-        const cardImg = document.createElement("img");
-              cardImg.classList.add("card-img-top");
-              // cardImg.src = "assets/img" + recipe.id + ".webp"; Exemple de lien pour les images
-              cardImg.alt = "";
-        card.appendChild(cardImg);
+
+        // const cardImg = document.createElement("img");           // Lignes à décomenter quand images disponibles
+        //       cardImg.classList.add("card-img-top");             // |
+        //       cardImg.src = "assets/img" + recipe.id + ".webp"   // |
+        //       cardImg.alt = " ";                                 // |
+        // card.appendChild(cardImg);                               // |
+
+        const placeholder = document.createElement("div")  // Lignes à supprimer quand images disponibles
+              placeholder.classList.add("card-img-top");   // |
+        card.appendChild(placeholder);                     // |
+
         const cardBody = document.createElement("div");
               cardBody.classList.add("card-body");
             const recipeHeader = document.createElement("div");
@@ -42,7 +48,7 @@ function createCard(recipe) {
                       recipeTime.classList.add("recipeTime");
                     const recipeImg = document.createElement("img");
                           recipeImg.src = "assets/icons/time.svg";
-                          recipeImg.alt = "";
+                          recipeImg.alt = " ";
                     recipeTime.appendChild(recipeImg);
                     const recipeMinutes = document.createElement("span");
                           recipeMinutes.classList.add("recipeMinutes");
@@ -73,22 +79,19 @@ function createCard(recipe) {
     return card;
 }
 
-async function init() {
-    await structureData(recipes);
-    getDropdownsLists();
-    
-    for (let i = 0; i < 30; i++) {
-        document.querySelector("section").appendChild(createCard(recipes[i]));
-        
+async function reloadCards() {
+    for (let i = 0; i < recipesFiltered.length ; i++) {
+        document.querySelector("section").appendChild(createCard(recipesFiltered[i]));
     }
 }
 
+async function init() {
+    await structureData(recipes);
+    getDropdownsLists();
+    await reloadCards();
+}
+
 init();
-
-console.log(recipes);
-
-let recipeFilter = [];
-let dropdownFilterList = new Set();
 
 let listOfIngredientsFiltered = listOfIngredients;
 let listOfUtensilsFiltered = listOfUtensils;

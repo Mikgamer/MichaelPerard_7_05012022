@@ -62,7 +62,8 @@ function generateDropdownList(list) {
 function createDropdownFilterCard(text, type) {
     const filter = document.createElement("span");
           filter.classList.add("filter", type);
-          filter.textContent = text;
+          filter.textContent = text[0].toUpperCase() + text.slice(1);;
+          filter.dataset.type = type;
         const img = document.createElement("img");
               img.src = "assets/icons/delete.svg"
               img.alt = "";
@@ -77,27 +78,38 @@ function addDropdownFilter(event) {
     const type = target.parentNode.parentNode.parentNode.dataset.type;
     const selectedFilters = document.querySelector(".filtersSelected");
     
-    if (!dropdownFilterList.has(text)) {
-        dropdownFilterList.add(text);
+    const listType = type === "ingredient" ? listOfIngredientsSelected : 
+    type === "appliance" ? listOfAppliancesSelected : 
+    type === "utensil" ? listOfUtensilsSelected : "";
+
+    if (!listType.has(text)) {
+        listType.add(text);
         selectedFilters.appendChild(createDropdownFilterCard(text, type));
+        recipesTagUpdate();
     }
 
-    if (dropdownFilterList.size>0) {
+    if (listOfIngredientsSelected.size + listOfAppliancesSelected.size + listOfUtensilsSelected.size >0) {
         selectedFilters.style.display = "flex";
     } else { selectedFilters.style.display = ""; }
 }
 
 function removeDropdownFilter(event) {
     const target = event.currentTarget;
-    const text = target.parentNode.textContent;
+    const text = target.parentNode.textContent[0].toLowerCase() + target.parentNode.textContent.slice(1);
+    const type = target.parentNode.dataset.type;
     const selectedFilters = document.querySelector(".filtersSelected");
+    
+    const listType = type === "ingredient" ? listOfIngredientsSelected : 
+    type === "appliance" ? listOfAppliancesSelected : 
+    type === "utensil" ? listOfUtensilsSelected : "";
 
-    if (dropdownFilterList.has(text)) {
-        dropdownFilterList.delete(text);
+    if (listType.has(text)) {
+        listType.delete(text);
         target.parentNode.outerHTML = "";
+        recipesTagReload();
     }
 
-    if (dropdownFilterList.size>0) {
+    if (listOfIngredientsSelected.size + listOfAppliancesSelected.size + listOfUtensilsSelected.size >0) {
         selectedFilters.style.display = "flex";
     } else { selectedFilters.style.display = ""; }
 }
