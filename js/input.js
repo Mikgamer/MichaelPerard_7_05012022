@@ -3,15 +3,17 @@ let currentTimer;
 
 function handleInput(event) {
     let input = event.currentTarget.value;
-    input.length >= 3 ? timer(input, 500) : undefined;
-    lastInput = input;
+    timer(input, 500);
 }
 
 // Timer pour éviter trop de chargements
 function timer(input, delay) {
     clearTimeout(currentTimer);
     currentTimer = setTimeout(
-        () => { input.includes(lastInput) ? recipesInputUpdate() : recipesInputReload() },
+        () => { 
+            input.includes(lastInput) ? recipesInputUpdate() : recipesTagUpdate();
+            lastInput = input;
+        },
         delay
     )
 }

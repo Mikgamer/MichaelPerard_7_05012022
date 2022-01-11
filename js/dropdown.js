@@ -1,26 +1,18 @@
 document.querySelector("body").ondragstart = () => {return false}; // Empêche les images d'être déplacées
 
 function dropdownOpen(dropdown) {
-    const currentDropdown = dropdown;
-    const dropdownOptions = currentDropdown.querySelector(".dropdownOptions");
-
-     if ( !currentDropdown.classList.contains("dropdownOpen") ) {
-        dropdownClose();
-        currentDropdown.classList.add("dropdownOpen");
-        dropdownOptions.style.width = dropdownOptions.offsetWidth + "px"; // Empêche le décalage d'un pixel coupé
-        currentDropdown.style.width = dropdownOptions.offsetWidth + "px";
-     }
+    if ( !dropdown.classList.contains("dropdownOpen") ) {
+       dropdownClose();
+       dropdown.classList.add("dropdownOpen");
+       dropdownResize();
+    }
 }
 
 function dropdownToggle(dropdown) {
-    const currentDropdown = dropdown;
-    const dropdownOptions = currentDropdown.querySelector(".dropdownOptions");
-
-    if ( !currentDropdown.classList.contains("dropdownOpen") ) {
+    if ( !dropdown.classList.contains("dropdownOpen") ) {
         dropdownClose();
-        currentDropdown.classList.add("dropdownOpen");
-        dropdownOptions.style.width = dropdownOptions.offsetWidth + "px"; // Empêche le décalage d'un pixel coupé
-        currentDropdown.style.width = dropdownOptions.offsetWidth + "px";
+        dropdown.classList.add("dropdownOpen");
+        dropdownResize();
     } else {
         dropdownClose();
     }
@@ -35,6 +27,17 @@ function dropdownClose() {
     }
 }
 
+function dropdownResize() {
+    const dropdown = document.querySelectorAll(".dropdown");
+
+    for (let i = 0; i < dropdown.length; i++) {
+        const dropdownOptions = dropdown.item(i).querySelector(".dropdownOptions");
+        dropdownOptions.style.width = "";
+        dropdownOptions.style.width = dropdownOptions.offsetWidth + "px"; // Empêche le décalage d'un pixel coupé
+        dropdown[i].style.width = dropdownOptions.offsetWidth + "px";
+    }
+}
+
 function generateDropdownList(list) {
     const listItems = list.length / 3;
     const generatedList = document.createDocumentFragment();
@@ -42,11 +45,11 @@ function generateDropdownList(list) {
     for (let i = 1; i < 4; i++) {
         var ul = document.createElement("ul")
         // Formule pour savoir combien mettre d'objets à la ul
-        var currentListItems = i===1 ? Math.ceil(listItems) :
+        let currentListItems = i===1 ? Math.ceil(listItems) :
         i===2 ? Math.round(listItems) :
-        Math.floor(listItems); 
+        Math.floor(listItems);
 
-        for (let j = (i - 1) * currentListItems; j < i * currentListItems - 1; j++) {
+        for (let j = (i - 1) * currentListItems; j <= (i * currentListItems) - 1; j++) {
             var li = document.createElement("li");
                 li.setAttribute("onclick", "addDropdownFilter(event)")
                 li.textContent = list[j];
@@ -55,6 +58,8 @@ function generateDropdownList(list) {
         
         generatedList.appendChild(ul);
     }
+
+    dropdownResize();
 
     return generatedList;
 }

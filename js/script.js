@@ -1,8 +1,29 @@
-let listOfIngredients = new Set();
-let listOfUtensils = new Set();
-let listOfAppliances = new Set();
+let listOfIngredients = [];
+let listOfUtensils = [];
+let listOfAppliances = [];
 
 function structureData(recipes) {
+    [listOfIngredients, listOfUtensils, listOfAppliances] = [...structureItems(recipes)];
+    // let setOfIngredients = new Set();
+    // let setOfUtensils = new Set();
+    // let setOfAppliances = new Set();
+    
+    // recipes.forEach(recipe => {
+    //     setOfAppliances.add(recipe.appliance.toLowerCase());
+    //     recipe.ingredients.forEach(ingredient => {
+    //         setOfIngredients.add(ingredient.ingredient.toLowerCase());
+    //     });
+    //     recipe.ustensils.forEach(utensil => {
+    //         setOfUtensils.add(utensil.toLowerCase());
+    //     });
+    // });
+
+    // listOfIngredients = [...setOfIngredients];
+    // listOfUtensils = [...setOfUtensils];
+    // listOfAppliances = [...setOfAppliances];
+}
+
+function structureItems(recipes) {
     let setOfIngredients = new Set();
     let setOfUtensils = new Set();
     let setOfAppliances = new Set();
@@ -17,9 +38,7 @@ function structureData(recipes) {
         });
     });
 
-    listOfIngredients = [...setOfIngredients];
-    listOfUtensils = [...setOfUtensils];
-    listOfAppliances = [...setOfAppliances];
+    return [[...setOfIngredients], [...setOfUtensils], [...setOfAppliances]]
 }
 
 function createCard(recipe) {
@@ -80,6 +99,7 @@ function createCard(recipe) {
 }
 
 async function reloadCards() {
+    document.querySelector("section").innerHTML = "";
     for (let i = 0; i < recipesFiltered.length ; i++) {
         document.querySelector("section").appendChild(createCard(recipesFiltered[i]));
     }
