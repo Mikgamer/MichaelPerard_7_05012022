@@ -42,20 +42,28 @@ function generateDropdownList(list) {
     const listItems = list.length / 3;
     const generatedList = document.createDocumentFragment();
 
-    for (let i = 1; i < 4; i++) {
-        var ul = document.createElement("ul")
-        // Formule pour savoir combien mettre d'objets à la ul
-        let currentListItems = i===1 ? Math.ceil(listItems) :
-        i===2 ? Math.round(listItems) :
-        Math.floor(listItems);
-
-        for (let j = (i - 1) * currentListItems; j <= (i * currentListItems) - 1; j++) {
-            var li = document.createElement("li");
-                li.setAttribute("onclick", "addDropdownFilter(event)")
-                li.textContent = list[j];
-            ul.appendChild(li);
+    if (listItems != 0) {
+        for (let i = 1; i < 4; i++) {
+            var ul = document.createElement("ul")
+            // Formule pour savoir combien mettre d'objets à la ul
+            let currentListItems = i===1 ? Math.ceil(listItems) :
+            i===2 ? Math.round(listItems) :
+            Math.floor(listItems);
+    
+            for (let j = (i - 1) * currentListItems; j <= (i * currentListItems) - 1; j++) {
+                var li = document.createElement("li");
+                    li.setAttribute("onclick", "addDropdownFilter(event)")
+                    li.textContent = list[j];
+                ul.appendChild(li);
+            }
+            
+            generatedList.appendChild(ul);
         }
-        
+    } else {
+        var ul = document.createElement("ul")
+            var li = document.createElement("li");
+                li.textContent = "Aucun tag disponible";
+            ul.appendChild(li);
         generatedList.appendChild(ul);
     }
 
@@ -127,7 +135,7 @@ async function getDropdownsLists() {
     ingredients.innerHTML = appliance.innerHTML = utensil.innerHTML = "";
 
     dropdownFilterInput();
-    
+
     ingredients.appendChild(generateDropdownList(listOfIngredientsFilteredSearch));
     appliance.appendChild(generateDropdownList(listOfAppliancesFiltered));
     utensil.appendChild(generateDropdownList(listOfUtensilsFiltered));

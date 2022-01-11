@@ -100,8 +100,15 @@ function createCard(recipe) {
 
 async function reloadCards() {
     document.querySelector("section").innerHTML = "";
-    for (let i = 0; i < recipesFiltered.length ; i++) {
-        document.querySelector("section").appendChild(createCard(recipesFiltered[i]));
+    if (recipesFiltered != 0) {
+        for (let i = 0; i < recipesFiltered.length ; i++) {
+            document.querySelector("section").appendChild(createCard(recipesFiltered[i]));
+        }
+    } else {
+        const h2 = document.createElement("h2");
+              h2.classList.add("nothingAvailable");
+              h2.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
+        document.querySelector("section").appendChild(h2);
     }
 }
 
