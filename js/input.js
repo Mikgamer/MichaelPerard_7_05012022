@@ -3,17 +3,24 @@ let currentTimer;
 
 function handleInput(event) {
     let input = event.currentTarget.value;
-    timer(input, 500);
-}
-
-// Timer pour éviter trop de chargements
-function timer(input, delay) {
+    // Timer pour éviter trop de chargements
     clearTimeout(currentTimer);
     currentTimer = setTimeout(
         () => { 
             input.includes(lastInput) ? recipesInputUpdate() : recipesTagUpdate();
             lastInput = input;
         },
-        delay
+        500
+    )
+}
+
+function handleDropdownInput(event) {
+    // Timer pour éviter trop de chargements
+    clearTimeout(currentTimer);
+    currentTimer = setTimeout(
+        () => { 
+            getDropdownsLists();
+        },
+        500
     )
 }

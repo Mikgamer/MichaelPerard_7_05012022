@@ -59,7 +59,7 @@ function generateDropdownList(list) {
         generatedList.appendChild(ul);
     }
 
-    dropdownResize();
+    setTimeout(() => dropdownResize(),50);
 
     return generatedList;
 }
@@ -126,7 +126,9 @@ async function getDropdownsLists() {
 
     ingredients.innerHTML = appliance.innerHTML = utensil.innerHTML = "";
 
-    ingredients.appendChild(generateDropdownList(listOfIngredientsFiltered));
+    dropdownFilterInput();
+    
+    ingredients.appendChild(generateDropdownList(listOfIngredientsFilteredSearch));
     appliance.appendChild(generateDropdownList(listOfAppliancesFiltered));
     utensil.appendChild(generateDropdownList(listOfUtensilsFiltered));
 }

@@ -116,3 +116,7 @@ init();
 let listOfIngredientsFiltered = listOfIngredients;
 let listOfUtensilsFiltered = listOfUtensils;
 let listOfAppliancesFiltered = listOfAppliances;
+
+let listOfIngredientsFilteredSearch = listOfIngredientsFiltered;
+let listOfAppliancesFilteredSearch = listOfAppliancesFiltered;
+let listOfUtensilsFilteredSearch = listOfUtensilsFiltered;

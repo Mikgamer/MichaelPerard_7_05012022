@@ -31,9 +31,9 @@
 
             <div class="filtersDropdowns">
                 <div class="dropdown input-group ingredient" onmousedown="dropdownOpen(event.currentTarget)" data-type="ingredient">
-                    <input type="text" class="form-control" placeholder="Ingredients">
+                    <input type="text" class="form-control" placeholder="Ingredients" oninput="handleDropdownInput(event)">
                     <div class="input-group-append">
-                        <button class="btn" type="button" onmousedown="dropdownToggle(event.currentTarget.parentNode.parentNode)">
+                        <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
                         </button>
                     </div>
@@ -41,9 +41,9 @@
                 </div>
 
                 <div class="dropdown input-group appliance" onmousedown="dropdownOpen(event.currentTarget)" data-type="appliance">
-                    <input type="text" class="form-control" placeholder="Appareil">
+                    <input type="text" class="form-control" placeholder="Appareil" oninput="handleDropdownInput(event)">
                     <div class="input-group-append">
-                        <button class="btn" type="button" onmousedown="dropdownToggle(event.currentTarget.parentNode.parentNode)">
+                        <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
                         </button>
                     </div>
@@ -51,9 +51,9 @@
                 </div>
 
                 <div class="dropdown input-group utensil" onmousedown="dropdownOpen(event.currentTarget)" data-type="utensil">
-                    <input type="text" class="form-control" placeholder="Ustensiles">
+                    <input type="text" class="form-control" placeholder="Ustensiles" oninput="handleDropdownInput(event)">
                     <div class="input-group-append">
-                        <button class="btn" type="button" onmousedown="dropdownToggle(event.currentTarget.parentNode.parentNode)">
+                        <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
                         </button>
                     </div>

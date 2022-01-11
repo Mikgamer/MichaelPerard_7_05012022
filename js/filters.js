@@ -108,3 +108,34 @@ async function recipesInputReload() {
     recipesInputFiltered = recipesTagFiltered;
     recipesInputUpdate();
 }
+
+function dropdownFilterInput() {
+    [listOfIngredientsFilteredSearch,listOfAppliancesFilteredSearch,listOfUtensilsFilteredSearch] = [[],[],[]]
+    const inputs = document.querySelectorAll(".dropdown input");
+    for (let i = 0; i < inputs.length; i++) {
+        const input = inputs.item(i);
+        inputValue = input.value.toLowerCase();
+        switch (input.parentNode.dataset.type) {
+            case "ingredient":
+                for (let i = 0; i < listOfIngredientsFiltered.length; i++) {
+                    const item = listOfIngredientsFiltered[i].toLowerCase();
+                    item.includes(inputValue) ? listOfIngredientsFilteredSearch.push(item) : undefined;
+                }
+                break;
+    
+            case "appliance":
+                for (let i = 0; i < listOfAppliancesFiltered.length; i++) {
+                    const item = listOfAppliancesFiltered[i];
+                    item.includes(inputValue) ? listOfAppliancesFilteredSearch.push(item) : undefined;
+                }
+                break;
+    
+            case "utensil":
+                for (let i = 0; i < listOfUtensilsFiltered.length; i++) {
+                    const item = listOfUtensilsFiltered[i];
+                    item.includes(inputValue) ? listOfUtensilsFilteredSearch.push(item) : undefined;
+                }
+                break;
+        }
+    }
+}
