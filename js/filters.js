@@ -10,8 +10,8 @@ let listOfIngredientsFilteredInput = [];
 let listOfUtensilsFilteredInput = [];
 let listOfAppliancesFilteredInput = [];
 
-let recipesTagFiltered = recipes
-let recipesInputFiltered = recipesTagFiltered
+let recipesTagFiltered = recipes;
+let recipesInputFiltered = recipesTagFiltered;
 let recipesFiltered = recipesInputFiltered;
 
 async function recipesTagFilter() {
