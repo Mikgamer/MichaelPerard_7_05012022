@@ -62,6 +62,7 @@ function generateDropdownList(list) {
     } else {
         var ul = document.createElement("ul")
             var li = document.createElement("li");
+                li.classList.add("nothingAvailable");
                 li.textContent = "Aucun tag disponible";
             ul.appendChild(li);
         generatedList.appendChild(ul);
@@ -137,6 +138,6 @@ async function getDropdownsLists() {
     dropdownFilterInput();
 
     ingredients.appendChild(generateDropdownList(listOfIngredientsFilteredSearch));
-    appliance.appendChild(generateDropdownList(listOfAppliancesFiltered));
-    utensil.appendChild(generateDropdownList(listOfUtensilsFiltered));
+    appliance.appendChild(generateDropdownList(listOfAppliancesFilteredSearch));
+    utensil.appendChild(generateDropdownList(listOfUtensilsFilteredSearch));
 }

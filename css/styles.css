@@ -332,6 +332,12 @@ main {
         -webkit-box-orient: vertical;
     }
 
+    .dropdownOptions ul li.nothingAvailable:hover{
+    cursor: unset;
+    box-shadow: unset;
+    background: unset;
+}
+
 h2.nothingAvailable {
     grid-column: 1 / 4;
     text-align: center;
