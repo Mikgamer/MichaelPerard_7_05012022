@@ -1,8 +1,29 @@
-let listOfIngredients = new Set();
-let listOfUtensils = new Set();
-let listOfAppliances = new Set();
+let listOfIngredients = [];
+let listOfUtensils = [];
+let listOfAppliances = [];
 
 function structureData(recipes) {
+    [listOfIngredients, listOfUtensils, listOfAppliances] = [...structureItems(recipes)];
+    // let setOfIngredients = new Set();
+    // let setOfUtensils = new Set();
+    // let setOfAppliances = new Set();
+    
+    // recipes.forEach(recipe => {
+    //     setOfAppliances.add(recipe.appliance.toLowerCase());
+    //     recipe.ingredients.forEach(ingredient => {
+    //         setOfIngredients.add(ingredient.ingredient.toLowerCase());
+    //     });
+    //     recipe.ustensils.forEach(utensil => {
+    //         setOfUtensils.add(utensil.toLowerCase());
+    //     });
+    // });
+
+    // listOfIngredients = [...setOfIngredients];
+    // listOfUtensils = [...setOfUtensils];
+    // listOfAppliances = [...setOfAppliances];
+}
+
+function structureItems(recipes) {
     let setOfIngredients = new Set();
     let setOfUtensils = new Set();
     let setOfAppliances = new Set();
@@ -17,9 +38,7 @@ function structureData(recipes) {
         });
     });
 
-    listOfIngredients = [...setOfIngredients];
-    listOfUtensils = [...setOfUtensils];
-    listOfAppliances = [...setOfAppliances];
+    return [[...setOfIngredients], [...setOfUtensils], [...setOfAppliances]];
 }
 
 function createCard(recipe) {
@@ -28,11 +47,11 @@ function createCard(recipe) {
 
         // const cardImg = document.createElement("img");           // Lignes à décomenter quand images disponibles
         //       cardImg.classList.add("card-img-top");             // |
-        //       cardImg.src = "assets/img" + recipe.id + ".webp"   // |
+        //       cardImg.src = "assets/img" + recipe.id + ".webp";  // |
         //       cardImg.alt = " ";                                 // |
         // card.appendChild(cardImg);                               // |
 
-        const placeholder = document.createElement("div")  // Lignes à supprimer quand images disponibles
+        const placeholder = document.createElement("div"); // Lignes à supprimer quand images disponibles
               placeholder.classList.add("card-img-top");   // |
         card.appendChild(placeholder);                     // |
 
@@ -52,7 +71,7 @@ function createCard(recipe) {
                     recipeTime.appendChild(recipeImg);
                     const recipeMinutes = document.createElement("span");
                           recipeMinutes.classList.add("recipeMinutes");
-                          recipeMinutes.textContent = recipe.time + " min"
+                          recipeMinutes.textContent = recipe.time + " min";
                     recipeTime.appendChild(recipeMinutes);
                 recipeHeader.appendChild(recipeTitle);
             cardBody.appendChild(recipeHeader);
@@ -80,8 +99,16 @@ function createCard(recipe) {
 }
 
 async function reloadCards() {
-    for (let i = 0; i < recipesFiltered.length ; i++) {
-        document.querySelector("section").appendChild(createCard(recipesFiltered[i]));
+    document.querySelector("section").innerHTML = "";
+    if (recipesFiltered != 0) {
+        for (let i = 0; i < recipesFiltered.length ; i++) {
+            document.querySelector("section").appendChild(createCard(recipesFiltered[i]));
+        }
+    } else {
+        const h2 = document.createElement("h2");
+              h2.classList.add("nothingAvailable");
+              h2.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+        document.querySelector("section").appendChild(h2);
     }
 }
 
@@ -96,3 +123,7 @@ init();
 let listOfIngredientsFiltered = listOfIngredients;
 let listOfUtensilsFiltered = listOfUtensils;
 let listOfAppliancesFiltered = listOfAppliances;
+
+let listOfIngredientsFilteredSearch = listOfIngredientsFiltered;
+let listOfAppliancesFilteredSearch = listOfAppliancesFiltered;
+let listOfUtensilsFilteredSearch = listOfUtensilsFiltered;

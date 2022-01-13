@@ -2,65 +2,113 @@ let listOfIngredientsSelected = new Set();
 let listOfUtensilsSelected = new Set();
 let listOfAppliancesSelected = new Set();
 
-let recipesTagFiltered = recipes
-let recipesInputFiltered = recipesTagFiltered
+let listOfIngredientsFilteredTag = [];
+let listOfUtensilsFilteredTag = [];
+let listOfAppliancesFilteredTag = [];
+
+let listOfIngredientsFilteredInput = [];
+let listOfUtensilsFilteredInput = [];
+let listOfAppliancesFilteredInput = [];
+
+let recipesTagFiltered = recipes;
+let recipesInputFiltered = recipesTagFiltered;
 let recipesFiltered = recipesInputFiltered;
 
-async function recipesTagFilter() {
-    // Filtrer les données
-    return recipesTagFiltered;
+function recipesTagFilter() {
+    // Filtre cartes
+    let itemsFiltered = [];
+    itemsFiltered = recipesTagFiltered.filter( 
+        items => 
+        [...listOfIngredientsSelected].every(
+            ingredientSelected => items.ingredients.some(item => item.ingredient.toLowerCase() === ingredientSelected)
+        ) &&
+        [...listOfUtensilsSelected].every(
+            ustensilSelected => items.ustensils.some(item => item.toLowerCase() === ustensilSelected)
+        ) && 
+        [...listOfAppliancesSelected].every(
+            applianceSelected => items.appliance.toLowerCase() === applianceSelected
+        )
+    );
+
+    // Filtre dropdowns
+    [listOfIngredientsFilteredTag, listOfUtensilsFilteredTag, listOfAppliancesFilteredTag] = [...structureItems(itemsFiltered)];
+    [listOfIngredientsFiltered, listOfUtensilsFiltered, listOfAppliancesFiltered] = [listOfIngredientsFilteredTag, listOfUtensilsFilteredTag, listOfAppliancesFilteredTag];
+    
+    return itemsFiltered;
 }
 
 async function recipesTagUpdate() {
-    await recipesTagFilter();
-    getDropdownsLists();
+    recipesTagFiltered = await recipesTagFilter();
     recipesInputReload();
 }
 
 async function recipesTagReload() {
     recipesTagFiltered = recipes;
-    await recipesTagUpdate();
+    recipesTagUpdate();
 }
 
 async function recipesInputFilter() {
-    // Filtrer les données
-    return recipesInputFiltered;
+
+    const inputFilter = document.querySelector(".search input").value.toLowerCase();
+    let itemsFiltered = [];
+
+    if (inputFilter.length >= 3) {
+        // Filtre cartes
+        itemsFiltered = recipesInputFiltered.filter(
+            item => 
+            item.name.toLowerCase().includes(inputFilter) ||
+            item.ingredients.some(ingredientSelected => ingredientSelected.ingredient.includes(inputFilter)) || 
+            item.description.toLowerCase().includes(inputFilter)
+        );
+
+        // Filtre dropdowns
+        [listOfIngredientsFilteredInput, listOfUtensilsFilteredInput, listOfAppliancesFilteredInput] = [...structureItems(itemsFiltered)];
+        [listOfIngredientsFiltered, listOfUtensilsFiltered, listOfAppliancesFiltered] = [listOfIngredientsFilteredInput, listOfUtensilsFilteredInput, listOfAppliancesFilteredInput];
+    } else {
+        itemsFiltered = recipesTagFiltered;
+    }
+
+    return itemsFiltered;
 }
 
 async function recipesInputUpdate() {
-    await recipesInputFilter();
+    recipesInputFiltered = await recipesInputFilter();
     recipesFiltered = recipesInputFiltered;
-    await reloadCards();
+    getDropdownsLists();
+    reloadCards();
 }
 
 async function recipesInputReload() {
     recipesInputFiltered = recipesTagFiltered;
-    await recipesInputUpdate();
+    recipesInputUpdate();
 }
 
+function dropdownFilterInput() {
+    [listOfIngredientsFilteredSearch,listOfAppliancesFilteredSearch,listOfUtensilsFilteredSearch] = [[],[],[]];
+    const inputs = document.querySelectorAll(".dropdown input");
 
+    [...inputs].map( input => {
+        inputValue = input.value.toLowerCase();
 
+        switch (input.parentNode.dataset.type) {
+            case "ingredient":
+                listOfIngredientsFilteredSearch = listOfIngredientsFiltered.filter(
+                    item => item.includes(inputValue)
+                );
+                break;
+    
+            case "appliance":
+                listOfAppliancesFilteredSearch = listOfAppliancesFiltered.filter(
+                    item => item.includes(inputValue)
+                );
+                break;
+    
+            case "utensil":
+                listOfUtensilsFilteredSearch = listOfUtensilsFiltered.filter(
+                    item => item.includes(inputValue)
+                );
+                break;
+        }
 
-
-
-// Rechager les listes : getDropdownsLists()
-// - Update listOfIngredientsFiltered, listOfAppliancesFiltered et listOfUtensilsFiltered
-
-// Fonction pour recharger les cartes : reloadCards()
-
-// Ordre des fonctions :
-// 1. Charger selon les tags => Diminuer recipesFiltered
-// 1. (Aussi) Charger selon la recherche => Dimunuer recipesFiltered
-// --> Dans les 2 cas, réduire recipesFiltered pour faire moins de passages
-// 2. Reload les listes et les cartes
-
-
-// 2 Tableaux : comparent leurs ids et affichent ceux qui sont sur les 2 tableaux
-// Ou faire pour input : quand nouveau texte = fullreload sinon lire le tableau des tags ?
-
-// Liste Input
-// Nouveau charactère = préciser sur le tableau, repasse sur lui même, si on supprime un tableau (on revien à la backup ou recharge si il n'y en a pas)
-// Garder les anciens tableaux(si oui, cb de backup ?) ou tout recharger quand on efface un charactère ?
-
-// Liste Tag
-// Charger selon les options sélectionnées : nouveau tag = repasse sur le tableau, sinon faire comme pour list input
+    });
+}

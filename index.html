@@ -31,7 +31,7 @@
 
             <div class="filtersDropdowns">
                 <div class="dropdown input-group ingredient" onmousedown="dropdownOpen(event.currentTarget)" data-type="ingredient">
-                    <input type="text" class="form-control" placeholder="Ingredients">
+                    <input type="text" class="form-control" placeholder="Ingredients" oninput="getDropdownsLists()">
                     <div class="input-group-append">
                         <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="dropdown input-group appliance" onmousedown="dropdownOpen(event.currentTarget)" data-type="appliance">
-                    <input type="text" class="form-control" placeholder="Appareil">
+                    <input type="text" class="form-control" placeholder="Appareil" oninput="getDropdownsLists()">
                     <div class="input-group-append">
                         <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="dropdown input-group utensil" onmousedown="dropdownOpen(event.currentTarget)" data-type="utensil">
-                    <input type="text" class="form-control" placeholder="Ustensiles">
+                    <input type="text" class="form-control" placeholder="Ustensiles" oninput="getDropdownsLists()">
                     <div class="input-group-append">
                         <button class="btn" type="button" onclick="dropdownToggle(event.currentTarget.parentNode.parentNode)">
                             <img src="assets/icons/arrow.svg" alt="">
