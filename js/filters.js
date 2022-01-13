@@ -24,18 +24,22 @@ async function recipesTagFilter() {
         for (let j = 0; j < listOfIngredientsSelected.size; j++) {
             let haveIngredient = 0;
             for (let k = 0; k < item.ingredients.length; k++) {
-                listOfIngredientsSelected.has(item.ingredients[k].ingredient.toLowerCase()) ? haveIngredient++ : undefined;
+                if (listOfIngredientsSelected.has(item.ingredients[k].ingredient.toLowerCase())) {
+                    haveIngredient++;
+                }
             }
-            haveIngredient === listOfIngredientsSelected.size ? haveIngredients = true : haveIngredients = false;
+            haveIngredients = haveIngredient === listOfIngredientsSelected.size ? true : false;
         }
 
         let haveUtensils = true;
         for (let j = 0; j < listOfUtensilsSelected.size; j++) {
             let haveUtensil = 0;
             for (let k = 0; k < item.ustensils.length; k++) {
-                listOfUtensilsSelected.has(item.ustensils[k].toLowerCase()) ? haveUtensil++ : undefined;
+                if (listOfUtensilsSelected.has(item.ustensils[k].toLowerCase())) {
+                    haveUtensil++;
+                }
             }
-            haveUtensil === listOfUtensilsSelected.size ? haveUtensils = true : haveUtensils = false;
+            haveUtensils = haveUtensil === listOfUtensilsSelected.size ? true : false;
         }
 
         let haveAppliance = true 
@@ -44,12 +48,14 @@ async function recipesTagFilter() {
         }
 
         // Si tout est trouvé dans l'objet vérifié, on l'insère dans le tableau
-        haveIngredients && haveUtensils && haveAppliance ? itemsFiltered.push(item) : undefined;
+        if (haveIngredients && haveUtensils && haveAppliance) {
+            itemsFiltered.push(item);
+        }
     }
 
     // Filtre dropdowns
     [listOfIngredientsFilteredTag, listOfUtensilsFilteredTag, listOfAppliancesFilteredTag] = [...structureItems(itemsFiltered)];
-    [listOfIngredientsFiltered, listOfUtensilsFiltered, listOfAppliancesFiltered] = [listOfIngredientsFilteredTag, listOfUtensilsFilteredTag, listOfAppliancesFilteredTag]
+    [listOfIngredientsFiltered, listOfUtensilsFiltered, listOfAppliancesFiltered] = [listOfIngredientsFilteredTag, listOfUtensilsFilteredTag, listOfAppliancesFilteredTag];
     
     return itemsFiltered;
 }
@@ -77,17 +83,21 @@ async function recipesInputFilter() {
             const isFilterInName = item.name.toLowerCase().includes(inputFilter);
             let isFilterInIngredients = false;
             for (let j = 0; j < item.ingredients.length; j++) {
-                item.ingredients[j].ingredient.includes(inputFilter) ? isFilterInIngredients = true : undefined;
+                if (item.ingredients[j].ingredient.includes(inputFilter)) {
+                    isFilterInIngredients = true;
+                }
             }
             const isFilterInDescription = item.description.toLowerCase().includes(inputFilter);
         
             // Si la chaine de caractères est trouvée dans l'objet vérifié, on l'insère dans le tableau
-            isFilterInName || isFilterInIngredients || isFilterInDescription ? itemsFiltered.push(item) : undefined;
+            if (isFilterInName || isFilterInIngredients || isFilterInDescription) {
+                itemsFiltered.push(item);
+            }
         }
 
         // Filtre dropdowns
         [listOfIngredientsFilteredInput, listOfUtensilsFilteredInput, listOfAppliancesFilteredInput] = [...structureItems(itemsFiltered)];
-        [listOfIngredientsFiltered, listOfUtensilsFiltered, listOfAppliancesFiltered] = [listOfIngredientsFilteredInput, listOfUtensilsFilteredInput, listOfAppliancesFilteredInput]
+        [listOfIngredientsFiltered, listOfUtensilsFiltered, listOfAppliancesFiltered] = [listOfIngredientsFilteredInput, listOfUtensilsFilteredInput, listOfAppliancesFilteredInput];
     
         getDropdownsLists();
     } else {
@@ -119,21 +129,27 @@ function dropdownFilterInput() {
             case "ingredient":
                 for (let i = 0; i < listOfIngredientsFiltered.length; i++) {
                     const item = listOfIngredientsFiltered[i].toLowerCase();
-                    item.includes(inputValue) ? listOfIngredientsFilteredSearch.push(item) : undefined;
+                    if (item.includes(inputValue)) {
+                        listOfIngredientsFilteredSearch.push(item);
+                    }
                 }
                 break;
     
             case "appliance":
                 for (let i = 0; i < listOfAppliancesFiltered.length; i++) {
                     const item = listOfAppliancesFiltered[i];
-                    item.includes(inputValue) ? listOfAppliancesFilteredSearch.push(item) : undefined;
+                    if (item.includes(inputValue)) {
+                        listOfAppliancesFilteredSearch.push(item);
+                    }
                 }
                 break;
     
             case "utensil":
                 for (let i = 0; i < listOfUtensilsFiltered.length; i++) {
                     const item = listOfUtensilsFiltered[i];
-                    item.includes(inputValue) ? listOfUtensilsFilteredSearch.push(item) : undefined;
+                    if (item.includes(inputValue)) {
+                        listOfUtensilsFilteredSearch.push(item);
+                    }
                 }
                 break;
         }
