@@ -2,7 +2,7 @@ let listOfIngredients = [];
 let listOfUtensils = [];
 let listOfAppliances = [];
 
-function structureData(recipes) {
+async function structureData(recipes) {
     [listOfIngredients, listOfUtensils, listOfAppliances] = [...structureItems(recipes)];
 }
 
@@ -30,7 +30,7 @@ function createCard(recipe) {
 
         // const cardImg = document.createElement("img");           // Lignes à décomenter quand images disponibles
         //       cardImg.classList.add("card-img-top");             // |
-        //       cardImg.src = "assets/img" + recipe.id + ".webp";  // |
+        //       cardImg.src = " ";  // |
         //       cardImg.alt = " ";                                 // |
         // card.appendChild(cardImg);                               // |
 
@@ -81,7 +81,7 @@ function createCard(recipe) {
     return card;
 }
 
-async function reloadCards() {
+function reloadCards() {
     document.querySelector("section").innerHTML = "";
     if (recipesFiltered != 0) {
         for (let i = 0; i < recipesFiltered.length ; i++) {
@@ -98,7 +98,7 @@ async function reloadCards() {
 async function init() {
     await structureData(recipes);
     getDropdownsLists();
-    await reloadCards();
+    reloadCards();
 }
 
 init();
