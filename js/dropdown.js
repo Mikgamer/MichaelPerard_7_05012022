@@ -128,7 +128,7 @@ function removeDropdownFilter(event) {
     } else { selectedFilters.style.display = ""; }
 }
 
-async function getDropdownsLists() {
+function getDropdownsLists() {
     const ingredients = document.querySelector(".dropdown.ingredient .dropdownOptions");
     const appliance = document.querySelector(".dropdown.appliance .dropdownOptions");
     const utensil = document.querySelector(".dropdown.utensil .dropdownOptions");

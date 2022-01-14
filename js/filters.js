@@ -14,7 +14,7 @@ let recipesTagFiltered = recipes;
 let recipesInputFiltered = recipesTagFiltered;
 let recipesFiltered = recipesInputFiltered;
 
-async function recipesTagFilter() {
+function recipesTagFilter() {
     // Filtre cartes
     let itemsFiltered = [];
     for (let i = 0; i < recipesTagFiltered.length; i++) {
@@ -60,17 +60,17 @@ async function recipesTagFilter() {
     return itemsFiltered;
 }
 
-async function recipesTagUpdate() {
-    recipesTagFiltered = await recipesTagFilter();
+function recipesTagUpdate() {
+    recipesTagFiltered = recipesTagFilter();
     recipesInputReload();
 }
 
-async function recipesTagReload() {
+function recipesTagReload() {
     recipesTagFiltered = recipes;
     recipesTagUpdate();
 }
 
-async function recipesInputFilter() {
+function recipesInputFilter() {
 
     const inputFilter = document.querySelector(".search input").value.toLowerCase();
     let itemsFiltered = [];
@@ -107,14 +107,14 @@ async function recipesInputFilter() {
     return itemsFiltered;
 }
 
-async function recipesInputUpdate() {
-    recipesInputFiltered = await recipesInputFilter();
+function recipesInputUpdate() {
+    recipesInputFiltered = recipesInputFilter();
     recipesFiltered = recipesInputFiltered;
     getDropdownsLists();
     reloadCards();
 }
 
-async function recipesInputReload() {
+function recipesInputReload() {
     recipesInputFiltered = recipesTagFiltered;
     recipesInputUpdate();
 }
